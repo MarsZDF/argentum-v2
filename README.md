@@ -18,7 +18,8 @@ tracker.show_diff("step1", "step2")
 # Output:
 # 📊 Diff: step1 → step2
 #   🔄 Changed thoughts: I need to search → I found results
-#   📏 plan length: 2 → 3
+#   📏 plan (list): 2 → 3 items
+#     ✅ Added plan[2]: respond
 
 # Export for analysis
 tracker.export_json("debug.json")
