@@ -54,7 +54,15 @@ class StateDiffTracker:
                     self._print_diff(old[key], new[key], key_path)
         elif isinstance(old, list) and isinstance(new, list):
             if len(old) != len(new):
-                print(f"  📏 {path} length: {len(old)} → {len(new)}")
+                print(f"  📏 {path} (list): {len(old)} → {len(new)} items")
+                # Show what was added or removed
+                if len(new) > len(old):
+                    for i in range(len(old), len(new)):
+                        print(f"    ✅ Added {path}[{i}]: {new[i]}")
+                elif len(old) > len(new):
+                    for i in range(len(new), len(old)):
+                        print(f"    ❌ Removed {path}[{i}]: {old[i]}")
+            # Check for changes in existing items
             for i, (o, n) in enumerate(zip(old, new)):
                 self._print_diff(o, n, f"{path}[{i}]")
         else:
